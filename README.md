@@ -15,6 +15,7 @@ Skate uses a JSON configuration file named `skate.json` for configuring general 
 - `controls`: Enables/disables the slide controls on clients (optional);
 - `slides`: Defines the HTML files for each slide in order (required);
 - `slideRatio`: Defines the width/height ratio for the slides (required);
+- `background`: Defines the background CSS property for the page *containing* the slides, not the slides themselves (optional);
 
 NOTE: having controls disabled (default behavior) and not having a password means you won't be able to progress the presentation at all.
 

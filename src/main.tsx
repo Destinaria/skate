@@ -23,6 +23,7 @@ const Config = Type.Object({
   control: Type.Optional(Type.Boolean()),
   slides: Type.Array(Type.TemplateLiteral('${string}.html'), { minItems: 1 }),
   slideRatio: Type.Object({width: Type.Number({ minimum: 1 }), height: Type.Number({ minimum: 1 })}),
+  background: Type.Optional(Type.String())
 });
 
 type Config = Static<typeof Config>;
@@ -94,6 +95,7 @@ new Elysia()
 margin: 0;
 padding: 0;
 overflow: hidden;
+background: ${config.background ?? "#111122"};
 }`}
 
         iframe {`{
