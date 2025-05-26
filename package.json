@@ -1,0 +1,22 @@
+{
+  "name": "skating",
+  "module": "src/main.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "compile": "bun build --compile --outfile=skate src/main.tsx"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "@elysiajs/html": "^1.3.0",
+    "@elysiajs/static": "^1.3.0",
+    "@sinclair/typebox": "^0.34.33",
+    "@total-typescript/ts-reset": "^0.6.1",
+    "elysia": "^1.3.1"
+  }
+}

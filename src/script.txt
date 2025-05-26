@@ -1,0 +1,22 @@
+const dbg = x => {
+  console.log(x);
+  return x;
+};
+const client = new WebSocket(`${location.protocol === "https:" ? "wss" : "ws"}://${location.host}`);
+const iframe = dbg(document.querySelector("iframe"));
+
+client.onmessage = ({ data }) => {
+  const slide = data;
+  iframe.src = `/${slide}`;
+};
+
+(() => document.addEventListener("keydown", ({ key }) => {
+  switch (key) {
+    case "ArrowLeft": case "ArrowUp": {
+      iframe.src = `/${Math.max(0, parseInt(iframe.contentWindow?.location.pathname.slice(1) ?? "0") - 1)}`;
+    } break;
+    case "ArrowRight": case "ArrowDown": {
+      iframe.src = `/${Math.min(LENGTH, parseInt(iframe.contentWindow?.location.pathname.slice(1) ?? "0") + 1)}`;
+    } break;
+  }
+}))
