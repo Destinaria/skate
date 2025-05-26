@@ -22,7 +22,7 @@ const Config = Type.Object({
   password: Type.Optional(Type.String({ minLength: 5, maxLength: 30 })),
   control: Type.Optional(Type.Boolean()),
   slides: Type.Array(Type.TemplateLiteral('${string}.html'), { minItems: 1 }),
-  slideDimensions: Type.Object({width: Type.Number({ minimum: 1 }), height: Type.Number({ minimum: 1 })}),
+  slideRatio: Type.Object({width: Type.Number({ minimum: 1 }), height: Type.Number({ minimum: 1 })}),
 });
 
 type Config = Static<typeof Config>;
@@ -101,7 +101,7 @@ position: absolute;
 top: 50%;
 left: 50%;
 transform: translate(-50%, -50%);
-aspect-ratio: ${config.slideDimensions.width} / ${config.slideDimensions.height};
+aspect-ratio: ${config.slideRatio.width} / ${config.slideRatio.height};
 border: none;
 outline: none;
 height: 100%;
