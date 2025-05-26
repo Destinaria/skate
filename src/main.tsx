@@ -96,6 +96,7 @@ margin: 0;
 padding: 0;
 overflow: hidden;
 background: ${config.background ?? "#111122"};
+background-size: cover;
 }`}
 
         iframe {`{
