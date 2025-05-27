@@ -71,13 +71,9 @@ const config = JSON.parse(fs.readFileSync(args.config, { encoding: "utf-8" }));
 
 Value.Assert(Config, config);
 
-const script = (() => {
-  if (args.control) {
-    return `${scr.replace("LENGTH", (config.slides.length - 1).toString())}()`;
-  } else {
-    return scr.replace("LENGTH", "0");
-  }
-})()
+const script = args.control
+  ? `${scr.replace("LENGTH", (config.slides.length - 1).toString())}()`
+  : scr.replace("LENGTH", "0");
 
 
 const clients = new Set<ElysiaWS>();
