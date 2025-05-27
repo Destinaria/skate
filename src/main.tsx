@@ -5,6 +5,7 @@ import { Type, type Static } from "@sinclair/typebox";
 import scr from "./script.txt" with { type: "text" };
 import fs from "fs";
 import { Value } from "@sinclair/typebox/value";
+import staticPlugin from "@elysiajs/static";
 
 const $throw = (err: Error): never => {
   throw err;
@@ -83,6 +84,7 @@ const clients = new Set<ElysiaWS>();
 
 new Elysia()
   .use(html())
+  .use(staticPlugin({ prefix: "/", assets: "./" }))
   .get("/", () => <html>
     <head>
       <title>{config.name}</title>
