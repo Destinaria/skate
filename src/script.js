@@ -2,7 +2,7 @@ const dbg = x => {
   console.log(x);
   return x;
 };
-const client = new WebSocket(`${location.protocol === "https:" ? "wss" : "ws"}://${location.host}`);
+const client = new WebSocket(`${location.protocol === "https:" ? "wss" : "ws"}://${location.host}/connect`);
 const iframe = dbg(document.querySelector("iframe"));
 
 client.onmessage = ({ data }) => {
@@ -13,10 +13,10 @@ client.onmessage = ({ data }) => {
 (() => document.addEventListener("keydown", ({ key }) => {
   switch (key) {
     case "ArrowLeft": case "ArrowUp": {
-      iframe.src = `/page/${Math.max(0, parseInt(iframe.contentWindow?.location.pathname.slice(1) ?? "0") - 1)}`;
+      iframe.src = `/page/${Math.max(0, parseInt(iframe.contentWindow?.location.pathname.slice(6) ?? "0") - 1)}`;
     } break;
     case "ArrowRight": case "ArrowDown": {
-      iframe.src = `/page/${Math.min(LENGTH, parseInt(iframe.contentWindow?.location.pathname.slice(1) ?? "0") + 1)}`;
+      iframe.src = `/page/${Math.min(LENGTH - 1, parseInt(iframe.contentWindow?.location.pathname.slice(6) ?? "0") + 1)}`;
     } break;
   }
 }))

@@ -134,6 +134,7 @@ Actions:
 
 async fn root(State(state): State<Arc<ServerState>>) -> response::Html<String> {
     response::Html(format!(r#"
+<!doctype html>
 <html>
     <head>
         <title>{name}</title>
@@ -145,18 +146,19 @@ async fn root(State(state): State<Arc<ServerState>>) -> response::Html<String> {
         </style>
     </head>
     <body>
-        <iframe src="/0">
+        <iframe src="/page/0"></iframe>
         <script>
-{ROOT_SCRIPT}{}
+{script}{}
         </script>
     </body>
 </html>
 "#,
         if state.control { "()" } else { "" },
-        name  = state.name.clone(),
-        style = ROOT_STYLE
-                        .replace("BACKGROUND", &state.background.clone())
-                        .replace("ASPECT_RATIO", &format!("{}/{}", state.slide_ratio.width, state.slide_ratio.height))
+        name   = state.name.clone(),
+        style  = ROOT_STYLE
+            .replace("BACKGROUND", &state.background.clone())
+            .replace("ASPECT_RATIO", &format!("{}/{}", state.slide_ratio.width, state.slide_ratio.height)),
+        script = ROOT_SCRIPT.replace("LENGTH", &state.slides.len().to_string())
     ))
 }
 
@@ -197,7 +199,6 @@ async fn connect(ws: WebSocketUpgrade, State(state): State<Arc<ServerState>>) ->
 }
 
 async fn page(State(state): State<Arc<ServerState>>, Path(page): Path<usize>) -> (StatusCode, response::Html<String>) {
-    let page = page.checked_rem(state.slides.len()).unwrap_or(0);
     let content = read_to_string(&*state.slides[page]).await;
     match content {
         Ok(content) => (StatusCode::OK, response::Html(content)),
