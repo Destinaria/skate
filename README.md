@@ -1,6 +1,6 @@
 # Skate
 
-*Slide in style with **HTML** presentations served with **Axum**.
+*Slide in style with **HTML** presentations served with **Axum**.*
 
 Building:
 ```bash
