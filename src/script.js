@@ -7,16 +7,16 @@ const iframe = dbg(document.querySelector("iframe"));
 
 client.onmessage = ({ data }) => {
   const slide = data;
-  iframe.src = `/${slide}`;
+  iframe.src = `/page/${slide}`;
 };
 
 (() => document.addEventListener("keydown", ({ key }) => {
   switch (key) {
     case "ArrowLeft": case "ArrowUp": {
-      iframe.src = `/${Math.max(0, parseInt(iframe.contentWindow?.location.pathname.slice(1) ?? "0") - 1)}`;
+      iframe.src = `/page/${Math.max(0, parseInt(iframe.contentWindow?.location.pathname.slice(1) ?? "0") - 1)}`;
     } break;
     case "ArrowRight": case "ArrowDown": {
-      iframe.src = `/${Math.min(LENGTH, parseInt(iframe.contentWindow?.location.pathname.slice(1) ?? "0") + 1)}`;
+      iframe.src = `/page/${Math.min(LENGTH, parseInt(iframe.contentWindow?.location.pathname.slice(1) ?? "0") + 1)}`;
     } break;
   }
 }))

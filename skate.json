@@ -1,0 +1,10 @@
+{
+  "name": "skating",
+  "control": true,
+  "slides": [],
+  "slide_ratio": {
+    "width": 16,
+    "height": 9
+  },
+  "background": "#111122"
+}

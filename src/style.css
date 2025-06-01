@@ -1,0 +1,18 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: BACKGROUND;
+  background-size: cover;
+}
+
+iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  aspect-ratio: ASPECT_RATIO;
+  border: none;
+  outline: none;
+  height: 100%;
+}
